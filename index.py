@@ -4,5 +4,5 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('templates/index.html', cards=cards)
+    return render_template('templates/index.html')
 
