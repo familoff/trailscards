@@ -13,7 +13,23 @@
 <body>
 
 <div class="container">
-<button type="button" class="btn btn-dark" onclick="process(1);">Старт</button>
+
+
+<form action="/" method="POST">
+    <img src="{% get_static_prefix %}{{ card1 }}.png" />
+    <br>
+    <img src="{% get_static_prefix %}{{ card2 }}.png" />
+    <input type="hidden" name="play" value="0">
+    <input type="submit" class="btn btn-dark" value="Выложить карты">
+</form>
+<form action="/" method="POST">
+    <img src="{% get_static_prefix %}{{ card1 }}.png" />
+    <br>
+    <img src="{% get_static_prefix %}{{ card2 }}.png" />
+    <input type="hidden" name="play" value="1">
+    <input type="submit" class="btn btn-dark" value="Выложить карты">
+</form>
+
 
 </div>
 
