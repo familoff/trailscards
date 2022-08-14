@@ -35,15 +35,13 @@ def index():
         cardimg2 = cardimg.get(card2)
         history.append(cardimg1)
         history.append(cardimg2)
-        global history_count
-        history_count +=1
         cards.pop(0)
         cards.pop(0)
     if len(cards) <= 1:
         play = 'Начать новую игру'
         cardsadd()
 
-    return render_template('index.html', cards=cards, card1=card1, card2=card2, play=play, cardimg1=cardimg1, cardimg2=cardimg2, history=history, history_count=history_count)
+    return render_template('index.html', cards=cards, card1=card1, card2=card2, play=play, cardimg1=cardimg1, cardimg2=cardimg2, history=history)
 
 def cardsadd():
     global cards
