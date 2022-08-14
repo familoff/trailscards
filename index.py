@@ -64,5 +64,11 @@ def cardsadd():
     [random.shuffle(cards) for i in range(7)]
     return cards
 
+
+@app.route('/background_process_test')
+def background_process_test():
+    print("Hello")
+    return "nothing"
+
 if __name__ == '__main__':
     app.run()
