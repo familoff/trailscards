@@ -4,33 +4,46 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trails of Tucana / Тропы Туканы</title>
-    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script>
 
+</script>
 </head>
 
+<div class="col-lg-8 mx-auto p-2">
+<header class="d-flex justify-content-center pb-3 mb-2 border-bottom">
+<a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+  <span class="fs-4">Trails of Tucana</span>
+</a>
+</header>
+</div>
+
 <body>
+<div class="container text-center">
+<form method="POST">
+    <div class="row justify-content-center">
+        <div class="col-2">
+            <img src="{{ cardimg1 }}" style="width:200px;"/>
+            <h5>{{ card1 }}</h5>
+        </div>
+        <div class="col-2">
+            <img src="{{ cardimg2 }}" style="width:200px;"/>
+            <h5>{{ card2 }}</h5>
+        </div>
+    </div>
 
-<div class="container">
-
-
-<form action="/" method="POST">
-    <img src="{% get_static_prefix %}{{ card1 }}.png" />
-    <br>
-    <img src="{% get_static_prefix %}{{ card2 }}.png" />
-    <input type="hidden" name="play" value="0">
-    <input type="submit" class="btn btn-dark" value="Выложить карты">
+    <input class="btn btn-primary" type="submit" name="play" value="{{ play }}">
 </form>
-<form action="/" method="POST">
-    <img src="{% get_static_prefix %}{{ card1 }}.png" />
-    <br>
-    <img src="{% get_static_prefix %}{{ card2 }}.png" />
-    <input type="hidden" name="play" value="1">
-    <input type="submit" class="btn btn-dark" value="Выложить карты">
-</form>
+    <div class="row pt-3" >
+        <h4 class=" text-center">История раунда</h4>
+        {% for h in range(history_count) %}
+                <img class="pb-2" src="{{ history[h] }}" style="width:100px;"/>
+                <img class="pb-2" src="{{ history[h+1] }}" style="width:100px;"/>
+        {% endfor %}
+    </div>
 
-
+<h5>{{ info }}</h5>
 </div>
 
 <footer class="border-top text-center">
