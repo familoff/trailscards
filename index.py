@@ -1,8 +1,12 @@
+import datetime
 import random
 from flask import Flask, render_template, request, session
 
 app = Flask(__name__)
-global cards, history
+app.config['SECRET_KEY'] = 'f769951c2b0e491f0119cbab581aeb69de9b6e72'
+app.permanent_session_lifetime = datetime.timedelta(days=2)
+
+global cards, history, info
 cards = ["Пустыня", "Пустыня", "Пустыня", "Пустыня", "Пустыня", "Пустыня", "Пустыня", "Пустыня",
          "Лес", "Лес", "Лес", "Лес", "Лес", "Лес", "Лес", "Гора", "Гора", "Гора", "Гора", "Гора", "Гора",
          "Вода", "Вода", "Вода", "Вода", "Любой ландшафт", "Любой ландшафт", ]
@@ -15,10 +19,10 @@ cardimg1 = ""
 cardimg2 = ""
 
 history = []
-history_count = 0
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    session.permanent = True
     if len(cards) >= 26:
         history.clear()
     if request.method != 'POST':
@@ -40,8 +44,17 @@ def index():
     if len(cards) <= 1:
         play = 'Начать новую игру'
         cardsadd()
+    if 'cards' not in session:
+        session['cards'] = cards
+        session['card1'] = card1
+        session['card1'] = card2
+        session['play'] = play
+        session['cardimg1'] = cardimg1
+        session['cardimg2'] = cardimg2
+        session['history'] = history
+    info = len(cards)
 
-    return render_template('index.html', cards=cards, card1=card1, card2=card2, play=play, cardimg1=cardimg1, cardimg2=cardimg2, history=history)
+    return render_template('index.html', cards=cards, card1=card1, card2=card2, play=play, cardimg1=cardimg1, cardimg2=cardimg2, history=history, info=info)
 
 def cardsadd():
     global cards
