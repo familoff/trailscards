@@ -12,6 +12,6 @@ img.pb-2 {
     width: 100px;
 }
 img.pb-2:nth-child(odd) {
-    border-right: 1px red;
+    border-right: 1px solid red;
     margin-right: 5px;
 }
