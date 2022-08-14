@@ -1,3 +1,13 @@
+.col-xxl-2 img {
+    width: 200px;
+}
+
+@media screen and (max-width: 720px) {
+    .col-xxl-2 img {
+        width: 150px;
+    }
+}
+
 img.pb-2 {
     width: 100px;
 }
